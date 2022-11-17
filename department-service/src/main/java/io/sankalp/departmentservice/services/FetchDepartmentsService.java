@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,5 +22,13 @@ public class FetchDepartmentsService {
         Resource resource = new ClassPathResource( "departments.json" );
         FileInputStream file = new FileInputStream( resource.getFile() );
         return Arrays.asList ( objectMapper.readValue ( file, DepartmentDTO[].class ) );
+    }
+
+    public DepartmentDTO getDepartmentByName ( String name ) throws IOException {
+         return getDepartments ().stream ()
+                                 .filter ( department -> department.getName ().equals ( name ) )
+                                 .findFirst ()
+                                 .orElse ( null );
+
     }
 }
