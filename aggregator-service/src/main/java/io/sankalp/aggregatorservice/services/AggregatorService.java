@@ -13,9 +13,9 @@ public class AggregatorService {
     @Autowired
     RestTemplate restTemplate;
 
-    public ResponseDTO getStudentDetailsWithDepartmentDetailsByStudentName () {
+    public ResponseDTO getStudentDetailsWithDepartmentDetailsByStudentName ( String studentName ) {
 
-        StudentDTO student = restTemplate.getForObject( "http://localhost:8080/getStudentByName?studentName=KK", StudentDTO.class );
+        StudentDTO student = restTemplate.getForObject( "http://localhost:8080/getStudentByName?studentName=" + studentName, StudentDTO.class );
         DepartmentDTO department = restTemplate.getForObject( "http://localhost:7777/getDepartmentByName?name=" + (student != null ? student.getDepartmentName() : null), DepartmentDTO.class );
 
         return new ResponseDTO().prepareResponse( student, department );

@@ -20,6 +20,6 @@ public class AggregatorController {
 
     @GetMapping ( "/getFullStudentDetails" )
     public ResponseDTO getStudentDetailsWithDepartmentDetailsByStudentName ( @RequestParam String studentName ) {
-        return aggregatorService.getStudentDetailsWithDepartmentDetailsByStudentName ();
+        return aggregatorService.getStudentDetailsWithDepartmentDetailsByStudentName ( studentName );
     }
 }
